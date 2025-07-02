@@ -55,48 +55,29 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return ResponsiveWidget(
-      mobile: MobileView(title: 'aaaa', onIncrement: () {}),
-      desktop: DesktopView(title: 'bbbb', onIncrement: () {}),
+      mobile: MobileView(title: widget.title),
+      desktop: DesktopView(title: widget.title),
     );
   }
 }
 
 class MobileView extends StatelessWidget {
   final String title;
-  final VoidCallback onIncrement;
 
-  const MobileView({required this.title, required this.onIncrement, super.key});
+  const MobileView({required this.title, super.key});
 
   @override
   Widget build(BuildContext context) {
-    return ApplicationView(title: title, onIncrement: onIncrement);
+    return ApplicationView(title: title);
   }
 }
 
 class DesktopView extends StatelessWidget {
   final String title;
-  final VoidCallback onIncrement;
-  const DesktopView({
-    required this.title,
-    required this.onIncrement,
-    super.key,
-  });
+  const DesktopView({required this.title, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -107,7 +88,7 @@ class DesktopView extends StatelessWidget {
         ),
         SizedBox(
           width: AppBreakpoints.mobile,
-          child: ApplicationView(title: "Deskari", onIncrement: onIncrement),
+          child: ApplicationView(title: title),
         ),
         Expanded(
           child: Container(color: Theme.of(context).colorScheme.secondary),
@@ -119,13 +100,8 @@ class DesktopView extends StatelessWidget {
 
 class ApplicationView extends StatelessWidget {
   final String title;
-  final VoidCallback onIncrement;
 
-  const ApplicationView({
-    required this.title,
-    required this.onIncrement,
-    super.key,
-  });
+  const ApplicationView({required this.title, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -139,11 +115,6 @@ class ApplicationView extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: const <Widget>[Text('testi testi'), Text("morjes")],
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: onIncrement,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
       ),
     );
   }
