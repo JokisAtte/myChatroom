@@ -71,8 +71,80 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return ResponsiveWidget(
-      mobile: Center(child: Text("222 :D")),
-      desktop: Center(child: Text("Deskari :D")),
+      mobile: MobileView(title: 'aaaa', onIncrement: () {}),
+      desktop: DesktopView(title: 'bbbb', onIncrement: () {}),
+    );
+  }
+}
+
+class MobileView extends StatelessWidget {
+  final String title;
+  final VoidCallback onIncrement;
+
+  const MobileView({required this.title, required this.onIncrement, super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return ApplicationView(title: title, onIncrement: onIncrement);
+  }
+}
+
+class DesktopView extends StatelessWidget {
+  final String title;
+  final VoidCallback onIncrement;
+  const DesktopView({
+    required this.title,
+    required this.onIncrement,
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Expanded(
+          child: Container(color: Theme.of(context).colorScheme.secondary),
+        ),
+        SizedBox(
+          width: AppBreakpoints.mobile,
+          child: ApplicationView(title: "Deskari", onIncrement: onIncrement),
+        ),
+        Expanded(
+          child: Container(color: Theme.of(context).colorScheme.secondary),
+        ),
+      ],
+    );
+  }
+}
+
+class ApplicationView extends StatelessWidget {
+  final String title;
+  final VoidCallback onIncrement;
+
+  const ApplicationView({
+    required this.title,
+    required this.onIncrement,
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        title: Text(title),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: const <Widget>[Text('testi testi'), Text("morjes")],
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: onIncrement,
+        tooltip: 'Increment',
+        child: const Icon(Icons.add),
+      ),
     );
   }
 }
@@ -87,7 +159,7 @@ class ResponsiveWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
-        if (constraints.maxWidth < AppBreakpoints.mobile) {
+        if (context.screenWidth < AppBreakpoints.mobile) {
           return mobile;
         } else {
           return desktop;
