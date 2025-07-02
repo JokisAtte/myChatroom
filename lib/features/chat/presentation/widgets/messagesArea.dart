@@ -1,18 +1,26 @@
-import 'package:flutter/widgets.dart';
-
-class MessagesController {
-  List<Text> messages = [Text("Moi"), Text("maailma")];
-
-  void addMessage(String msg) {
-    messages.add(Text(msg));
-  }
-}
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:my_chatroom/features/chat/domain/messagesController.dart';
 
 class Messagesarea extends StatelessWidget {
-  final msgController = MessagesController();
-
   @override
   Widget build(BuildContext context) {
-    return Column(children: msgController.messages);
+    return Consumer<MessagesController>(
+      builder: (context, msgController, child) {
+        return Expanded(
+          // Constrain the height of ListView
+          child: ListView.builder(
+            itemCount: msgController.messages.length,
+            itemBuilder: (context, index) {
+              final message = msgController.messages[index];
+              return Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(message.content),
+              );
+            },
+          ),
+        );
+      },
+    );
   }
 }
