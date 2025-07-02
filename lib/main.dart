@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_chatroom/core/constants/breakpoints.dart';
+import 'package:my_chatroom/features/chat/presentation/screens/chatScreen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -110,12 +111,7 @@ class ApplicationView extends StatelessWidget {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(title),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: const <Widget>[Text('testi testi'), Text("morjes")],
-        ),
-      ),
+      body: Center(child: Chatscreen()),
     );
   }
 }
