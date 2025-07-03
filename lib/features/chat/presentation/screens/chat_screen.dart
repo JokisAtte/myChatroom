@@ -12,7 +12,10 @@ class Chatscreen extends StatelessWidget {
     final msgController = Provider.of<MessagesController>(context);
 
     return Center(
-      child: Column(children: [Messagesarea(), Inputarea(msgController)]),
+      child: Padding(
+        padding: EdgeInsets.only(bottom: 40),
+        child: Column(children: [Messagesarea(), Inputarea(msgController)]),
+      ),
     );
   }
 }

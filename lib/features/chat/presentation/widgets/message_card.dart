@@ -25,18 +25,18 @@ class MessageCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             spacing: 10,
             children: [
-              Text(
+              SelectableText(
                 message.senderName,
                 style: textTheme.labelLarge?.copyWith(
                   fontWeight: FontWeight.bold,
                   fontSize: 15.0,
                 ),
               ),
-              Text(
+              SelectableText(
                 message.content,
                 style: textTheme.labelLarge?.copyWith(fontSize: 16.0),
               ),
-              Text(
+              SelectableText(
                 formatTimestamp(message.timestamp),
                 style: TextStyle(
                   fontStyle: FontStyle.italic,
