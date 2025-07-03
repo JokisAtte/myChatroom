@@ -2,12 +2,15 @@ import 'package:flutter/widgets.dart';
 import 'package:my_chatroom/features/chat/domain/messagesController.dart';
 import 'package:my_chatroom/features/chat/presentation/widgets/inputArea.dart';
 import 'package:my_chatroom/features/chat/presentation/widgets/messagesArea.dart';
+import 'package:provider/provider.dart';
 
 class Chatscreen extends StatelessWidget {
-  final msgController = MessagesController();
+  const Chatscreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final msgController = Provider.of<MessagesController>(context);
+
     return Center(
       child: Column(children: [Messagesarea(), Inputarea(msgController)]),
     );

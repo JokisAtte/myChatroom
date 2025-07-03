@@ -3,12 +3,13 @@ import 'package:provider/provider.dart';
 import 'package:my_chatroom/features/chat/domain/messagesController.dart';
 
 class Messagesarea extends StatelessWidget {
+  const Messagesarea({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Consumer<MessagesController>(
       builder: (context, msgController, child) {
         return Expanded(
-          // Constrain the height of ListView
           child: ListView.builder(
             itemCount: msgController.messages.length,
             itemBuilder: (context, index) {

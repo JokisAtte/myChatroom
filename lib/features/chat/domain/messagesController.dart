@@ -8,6 +8,6 @@ class MessagesController extends ChangeNotifier {
 
   void addMessage(Message message) {
     _messages.add(message);
-    notifyListeners(); // Notify listeners about the change
+    notifyListeners();
   }
 }

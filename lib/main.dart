@@ -101,7 +101,11 @@ class ResponsiveWidget extends StatelessWidget {
   final Widget mobile;
   final Widget desktop;
 
-  const ResponsiveWidget({required this.mobile, required this.desktop});
+  const ResponsiveWidget({
+    super.key,
+    required this.mobile,
+    required this.desktop,
+  });
 
   @override
   Widget build(BuildContext context) {

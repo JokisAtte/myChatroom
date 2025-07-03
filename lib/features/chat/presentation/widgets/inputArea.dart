@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:my_chatroom/features/chat/data/Message.dart';
 import 'package:my_chatroom/features/chat/domain/messagesController.dart';
 
 class Inputarea extends StatelessWidget {
   final MessagesController msgController;
-  final TextEditingController textController =
-      TextEditingController(); // Add a TextEditingController
+  final TextEditingController textController = TextEditingController();
 
-  Inputarea(this.msgController);
+  Inputarea(this.msgController, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -37,6 +35,7 @@ void handleMessage(
   final message = textController.text;
   if (message.isNotEmpty) {
     msgController.addMessage(Message(message));
+    print('Message added: $message');
     textController.clear();
   }
 }
