@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:my_chatroom/features/chat/data/message.dart';
 import 'package:my_chatroom/features/chat/domain/messages_controller.dart';
+import 'package:my_chatroom/features/user/domain/user_controller.dart';
+import 'package:my_chatroom/main.dart';
+import 'package:provider/provider.dart';
 
 class Inputarea extends StatelessWidget {
   final MessagesController msgController;
@@ -11,27 +14,50 @@ class Inputarea extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return Column(
       children: [
-        Expanded(
-          child: TextField(
-            controller: textController,
-            focusNode: focusNode,
-            decoration: InputDecoration(hintText: "Type your message..."),
-            keyboardType: TextInputType.multiline,
-            minLines: 1, // Normal textInputField will be displayed
-            maxLines: 5, // When user presses enter it will adapt to it
-
-            onSubmitted: (value) =>
-                handleMessage(textController, msgController, focusNode),
-          ),
+        Row(
+          spacing: 20,
+          children: [
+            Text("Sending as ${Provider.of<UserController>(context).userName}"),
+            ElevatedButton(
+              child: Text("Change username", softWrap: false),
+              onPressed: () => {modalBuilder(context)},
+            ),
+          ],
         ),
-        const SizedBox(width: 8.0),
-        FloatingActionButton(
-          onPressed: () => {
-            handleMessage(textController, msgController, focusNode),
-          },
-          child: Text("sendaa se"),
+        Row(
+          children: [
+            Expanded(
+              child: TextField(
+                controller: textController,
+                focusNode: focusNode,
+                decoration: InputDecoration(hintText: "Type your message..."),
+                keyboardType: TextInputType.multiline,
+                minLines: 1,
+                maxLines: 5,
+
+                onSubmitted: (value) => handleMessage(
+                  textController,
+                  msgController,
+                  context,
+                  focusNode,
+                ),
+              ),
+            ),
+            const SizedBox(width: 8.0),
+            ElevatedButton(
+              onPressed: () => {
+                handleMessage(
+                  textController,
+                  msgController,
+                  context,
+                  focusNode,
+                ),
+              },
+              child: Text("sendaa se"),
+            ),
+          ],
         ),
       ],
     );
@@ -41,12 +67,17 @@ class Inputarea extends StatelessWidget {
 void handleMessage(
   TextEditingController textController,
   MessagesController msgController,
+  BuildContext context,
   FocusNode focusNode,
 ) {
   final message = textController.text;
   if (message.isNotEmpty) {
-    msgController.addMessage(Message(message, "Test user name"));
-    print('Message added: $message');
+    msgController.addMessage(
+      Message(
+        message,
+        Provider.of<UserController>(context, listen: false).userName,
+      ),
+    );
     textController.clear();
     focusNode.requestFocus();
   }
