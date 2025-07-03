@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:my_chatroom/features/chat/data/Message.dart';
-import 'package:my_chatroom/features/chat/domain/messagesController.dart';
+import 'package:my_chatroom/features/chat/data/message.dart';
+import 'package:my_chatroom/features/chat/domain/messages_controller.dart';
 
 class Inputarea extends StatelessWidget {
   final MessagesController msgController;
@@ -34,7 +34,7 @@ void handleMessage(
 ) {
   final message = textController.text;
   if (message.isNotEmpty) {
-    msgController.addMessage(Message(message));
+    msgController.addMessage(Message(message, "Test user name"));
     print('Message added: $message');
     textController.clear();
   }

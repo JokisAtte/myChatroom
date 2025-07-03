@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
-import 'package:my_chatroom/features/chat/domain/messagesController.dart';
-import 'package:my_chatroom/features/chat/presentation/widgets/inputArea.dart';
-import 'package:my_chatroom/features/chat/presentation/widgets/messagesArea.dart';
+import 'package:my_chatroom/features/chat/domain/messages_controller.dart';
+import 'package:my_chatroom/features/chat/presentation/widgets/input_area.dart';
+import 'package:my_chatroom/features/chat/presentation/widgets/messages_area.dart';
 import 'package:provider/provider.dart';
 
 class Chatscreen extends StatelessWidget {

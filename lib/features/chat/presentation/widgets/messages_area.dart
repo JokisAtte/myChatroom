@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:my_chatroom/features/chat/presentation/widgets/message_card.dart';
 import 'package:provider/provider.dart';
-import 'package:my_chatroom/features/chat/domain/messagesController.dart';
+import 'package:my_chatroom/features/chat/domain/messages_controller.dart';
 
 class Messagesarea extends StatelessWidget {
   const Messagesarea({super.key});
@@ -16,7 +17,7 @@ class Messagesarea extends StatelessWidget {
               final message = msgController.messages[index];
               return Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Text(message.content),
+                child: MessageCard(message),
               );
             },
           ),

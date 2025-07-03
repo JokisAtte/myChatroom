@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_chatroom/core/constants/breakpoints.dart';
-import 'package:my_chatroom/features/chat/domain/messagesController.dart';
-import 'package:my_chatroom/features/chat/presentation/screens/chatScreen.dart';
+import 'package:my_chatroom/features/chat/domain/messages_controller.dart';
+import 'package:my_chatroom/features/chat/presentation/screens/chat_screen.dart';
 import 'package:provider/provider.dart';
 
 void main() {
