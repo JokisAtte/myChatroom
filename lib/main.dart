@@ -26,7 +26,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Chatroom demo',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: const Color.fromARGB(255, 17, 94, 58),
+        ),
       ),
       home: MyHomePage(
         title:
